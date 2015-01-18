@@ -27,12 +27,12 @@ def test_list_visualizer():
     assert mw.list_visualizer(lista, []) == '_ _ _ _ _'
 
 def test_set_chosen_word_string():
-    word = 'apPle'
+    word = 'apPle\n'
     assert type(mw.set_chosen_word_string(word)) == str
     assert mw.set_chosen_word_string(word) == "APPLE"
 
 def test_set_chosen_word_list():
-    word = 'APPLE\n'
+    word = 'APPLE'
     assert type(mw.set_chosen_word_list(word)) == list
     assert mw.set_chosen_word_list(word) == ['A', 'P', 'P', 'L', 'E']
 
@@ -46,9 +46,14 @@ def test_repeat_guess_check():
     guessa = "A"
     guessb = "B"
     guess_list = ['B', 'C', 'D']
-
     assert mw.repeat_guess_check(guessa, guess_list) == "pass"
     assert mw.repeat_guess_check(guessb, guess_list) == "guess again"
+
+def test_error_checking():
+    assert mw.error_checking('1') == "not ok"
+    assert mw.error_checking('!') == "not ok"
+    assert mw.error_checking('ab') == "not ok"
+    assert mw.error_checking('A') == "ok"
 
 def test_win_check():
     lista = ['A', 'P', 'P', 'L', 'E']
