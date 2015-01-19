@@ -159,6 +159,14 @@ def guess_checker(a_guess, chosen_word_string, counter):
         return counter
 
 
+def pretty_guess_list(guess_list):
+    """reformats the guess_list to be more aesthetically pleasing"""
+    pretty_list = guess_list[:]
+    pretty_list.sort()
+    pretty_string = ' '.join(pretty_list)
+    return pretty_string
+
+
 def win_check(chosen_word_list, guess_list):
     """Tests to see whether all of the letters in the word have been guessed"""
     if all(item in guess_list for item in chosen_word_list):
@@ -227,12 +235,20 @@ if __name__ == "__main__":
 
         while counter > 0:
             guess_text(counter)
+            print("Type HELP for a list of guessed words \n")
             capsletter = get_guess()
+            while capsletter == "HELP":
+                print("\n You've guessed:")
+                print(pretty_guess_list(guess_list), "\n")
+                list_visualizer(chosen_word_list, guess_list)
+                print("\n")
+                capsletter = get_guess()
             while error_checking(capsletter) == "not ok":
                 capsletter = get_guess()
             while repeat_guess_check(capsletter, guess_list) == "guess again":
                 capsletter = get_guess()
             guess_list = append_guess_list(capsletter, guess_list)
+            print("\n \n \n")
             list_visualizer(chosen_word_list, guess_list)
             counter = guess_checker(capsletter, chosen_word_string, counter)
 

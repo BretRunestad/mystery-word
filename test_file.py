@@ -67,6 +67,11 @@ def test_guess_text():
     assert mw.guess_text(8) == "Make a guess! You have 8 left."
 
 
+def test_pretty_guess_list():
+    a_list = ['D', 'B', 'A', 'C']
+    assert mw.pretty_guess_list(a_list) == "A B C D"
+
+
 def test_repeat_guess_check():
     guessa = "A"
     guessb = "B"
